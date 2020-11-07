@@ -13,6 +13,54 @@
         android:fontFamily="monospace"
         android:text="Astro Aegis"
         android:textAlignment="center"
-        android:textSize="30dp"/>
+        android:textSize="30dp"
+        android:textColor="#64B5F6"/>
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:layout_below="@id/textView"
+        android:text="Your Vedic Astrology Reckoner"
+        android:fontFamily="sans-serif-condensed"
+        android:textAlignment="center"
+        android:textColor="#29B6F6" />
+
+    <Button
+        android:id="@+id/newHoroscopeButton"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView2"
+        android:layout_marginTop="2dp"
+        android:backgroundTint="#4DD0E1"
+        android:layout_marginLeft="20dp"
+        android:text="New Horoscope"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp" />
+
+    <Button
+        android:id="@+id/openHoroscopeButton"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_alignEnd="@+id/newHoroscopeButton"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="-119dp"
+        android:backgroundTint="#4FC3F7"
+        android:text="Open Horoscope"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp"/>
+
+    <Button
+        android:id="@+id/worldChartButton"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_alignEnd="@+id/openHoroscopeButton"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="-119dp"
+        android:backgroundTint="#64B5F6"
+        android:text="World Chart"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp"/>
 </RelativeLayout>
