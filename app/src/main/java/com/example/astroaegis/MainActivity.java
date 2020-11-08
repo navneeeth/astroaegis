@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +28,15 @@ public class MainActivity extends AppCompatActivity {
         openHoroscopeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Feature still being developed!", Toast.LENGTH_LONG);
+                Toast openHoroscopeButtonToast = Toast.makeText(MainActivity.this, "Feature still being developed!", Toast.LENGTH_LONG);
+                openHoroscopeButtonToast.show();
             }
         });
         worldChartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Feature still being developed!", Toast.LENGTH_LONG);
+                Toast worldChartButtonToast = Toast.makeText(MainActivity.this, "Feature still being developed!", Toast.LENGTH_LONG);
+                worldChartButtonToast.show();
             }
         });
     }
