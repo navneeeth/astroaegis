@@ -63,4 +63,13 @@
         android:text="World Chart"
         android:textColor="#FFFFFF"
         android:textSize="10dp"/>
+
+    <TextView
+        android:id="@+id/responseTV"
+        android:layout_width="170dp"
+        android:layout_height="54dp"
+        android:layout_below="@id/openHoroscopeButton"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="142dp"
+        android:text="TextView" />
 </RelativeLayout>
