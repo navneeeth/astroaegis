@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError{
                 HashMap<String, String> headers = new HashMap<String, String>();
                 //headers.put("x-rapidapi-key", "");
+                //trying to send, but ProKerala API is not accepting the API key!
                 headers.put("x-rapidapi-host", "astrology4.p.rapidapi.com");
                 headers.put("x-rapidapi-key", "");
                 headers.put("useQueryString", "true");
