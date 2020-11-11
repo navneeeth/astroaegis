@@ -4,13 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewHoroscopeActivity">
+    tools:context=".OpenHoroscopeActivity">
 
-    <TextView
-        android:id="@+id/testingSETV"
-        android:layout_width="match_parent"
-        android:layout_height="314dp"
-        android:text="TextView"
-        android:textSize="8sp"
-        android:fontFamily="sans-serif"/>
 </RelativeLayout>

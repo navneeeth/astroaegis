@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         worldChartButton = findViewById(R.id.worldChartButton);
         responseTV = findViewById(R.id.responseTV);
         newHoroscopeActivityIntent = new Intent(MainActivity.this, NewHoroscopeActivity.class);
+        openHoroscopeActivityIntent = new Intent(MainActivity.this, OpenHoroscopeActivity.class);
         newHoroscopeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
         openHoroscopeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast openHoroscopeButtonToast = Toast.makeText(MainActivity.this, "Feature still being developed!", Toast.LENGTH_LONG);
-                openHoroscopeButtonToast.show();
+                startActivity(openHoroscopeActivityIntent);
             }
         });
         worldChartButton.setOnClickListener(new View.OnClickListener() {
