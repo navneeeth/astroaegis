@@ -8,9 +8,75 @@
 
     <TextView
         android:id="@+id/testingSETV"
+        android:layout_width="76dp"
+        android:layout_height="58dp"
+        android:fontFamily="sans-serif"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/displayText"
         android:layout_width="match_parent"
-        android:layout_height="314dp"
-        android:text="TextView"
-        android:textSize="8sp"
-        android:fontFamily="sans-serif"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/testingSETV"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#7986CB"
+        android:text="Enter your details below:" />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_below="@id/displayText"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_width="55dp"
+        android:layout_height="31dp"
+        android:text="Name:"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#7986CB"/>
+
+    <TextView
+        android:id="@+id/DOBText"
+        android:layout_below="@id/nameText"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_width="55dp"
+        android:layout_height="31dp"
+        android:text="DOB:"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#7986CB"/>
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:layout_below="@id/displayText"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/nameText"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:hint="Type your Name"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="10sp"
+        />
+
+    <EditText
+        android:id="@+id/editTextDOB"
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:layout_below="@id/editTextName"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/DOBText"
+        android:ems="10"
+        android:fontFamily="sans-serif-condensed"
+        android:hint="Type your DOB"
+        android:inputType="date"
+        android:textSize="10sp" />
+
+
 </RelativeLayout>

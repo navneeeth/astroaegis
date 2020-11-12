@@ -57,7 +57,7 @@ public class NewHoroscopeActivity extends AppCompatActivity {
         //////////////////////////////////////////////
         printString += "\n" + getAllplanets(sw, sd);
 
-        testingSETV.setText(printString);
+        //testingSETV.setText(printString);
     }
 
     private String getAllplanets(SwissEph sw, SweDate sd) {
