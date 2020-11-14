@@ -76,5 +76,60 @@
         android:text=""
         android:textSize="10sp" />
 
+    <TextView
+        android:id="@+id/TOBText"
+        android:layout_below="@id/DOBText"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_width="55dp"
+        android:layout_height="31dp"
+        android:text="TOB:"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#7986CB"/>
+
+    <EditText
+        android:id="@+id/timePickerText"
+        android:layout_width="181dp"
+        android:layout_height="31dp"
+        android:layout_below="@id/datePickerText"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/TOBText"
+        android:fontFamily="sans-serif-condensed"
+        android:text=""
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/LocationText"
+        android:layout_width="76dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TOBText"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Location:"
+        android:textColor="#7986CB"
+        android:textSize="20sp" />
+
+    <SearchView
+        android:id="@+id/locationSearchView"
+        android:layout_width="181dp"
+        android:layout_height="31dp"
+        android:layout_toRightOf="@id/LocationText"
+        android:layout_below="@id/timePickerText"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="30dp"
+        android:queryHint="Type Location"
+        android:iconifiedByDefault="false"
+        />
+
+    <ListView
+        android:id="@+id/locationSearchViewList"
+        android:layout_width="181dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/locationSearchView"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>

@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -17,17 +19,21 @@ import swisseph.SweConst;
 import swisseph.SweDate;
 import swisseph.SwissEph;
 
-public class NewHoroscopeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    TextView testingSETV, datePickerText;
+public class NewHoroscopeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+    TextView testingSETV, datePickerText, timePickerText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_horoscope);
         testingSETV = findViewById(R.id.testingSETV);
         datePickerText = (TextView) findViewById(R.id.datePickerText);
+        timePickerText = (TextView) findViewById(R.id.timePickerText);
         Calendar c = Calendar.getInstance();
         String defaultDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
         datePickerText.setText(defaultDateString);
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+        timePickerText.setText(""+hour+":"+minute);
         new CopyAssetFiles(".*\\.se1", getApplicationContext()).copy();
         computeChart();
         datePickerText.setOnClickListener(new View.OnClickListener() {
@@ -35,9 +41,20 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
             public void onClick(View v) {
                 DialogFragment datePicker = new DatePickerFragment();
                 datePicker.show(getFragmentManager(), "date picker");
-
             }
         });
+        timePickerText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               DialogFragment timePicker = new TimePickerFragment();
+               timePicker.show(getFragmentManager(), "time picker");
+            }
+        });
+    }
+
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        timePickerText.setText(""+hourOfDay+":"+minute);
     }
 
     @Override
