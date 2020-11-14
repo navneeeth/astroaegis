@@ -5,22 +5,38 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 import swisseph.SweConst;
 import swisseph.SweDate;
 import swisseph.SwissEph;
 
+import static android.R.layout.simple_list_item_1;
+
 public class NewHoroscopeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     TextView testingSETV, datePickerText, timePickerText;
+    SearchView locationSearchView;
+    ListView locationSearchViewList;
+    ArrayList<String> list;
+    private ArrayAdapter<String> adapter, adapter1;
+    Geocoder geocoder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +44,43 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
         testingSETV = findViewById(R.id.testingSETV);
         datePickerText = (TextView) findViewById(R.id.datePickerText);
         timePickerText = (TextView) findViewById(R.id.timePickerText);
+        locationSearchView = (SearchView) findViewById(R.id.locationSearchView);
+        locationSearchViewList = (ListView) findViewById(R.id.locationSearchViewList);
+        geocoder = new Geocoder(this);
         Calendar c = Calendar.getInstance();
         String defaultDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
         datePickerText.setText(defaultDateString);
         int hour = c.get(Calendar.HOUR_OF_DAY);
         int minute = c.get(Calendar.MINUTE);
         timePickerText.setText(""+hour+":"+minute);
+        locationSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                try {
+                    List<Address> addresses = geocoder.getFromLocationName(newText, 5);
+                    int noOfAddresses = addresses.size();
+                    list = new ArrayList<String>();
+                    for(int i = 0; i < noOfAddresses; i++) {
+                        Address address = addresses.get(i);
+                        String addressCity = address.getFeatureName();
+                        String addressCountry = address.getCountryName();
+                        Log.d("tag", addressCity+"is/n");
+                        list.add(""+addressCity+", "+addressCountry);
+                    }
+                    adapter = new ArrayAdapter<String>(NewHoroscopeActivity.this, simple_list_item_1, list);
+                    locationSearchViewList.setAdapter(adapter);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
         new CopyAssetFiles(".*\\.se1", getApplicationContext()).copy();
         computeChart();
         datePickerText.setOnClickListener(new View.OnClickListener() {
