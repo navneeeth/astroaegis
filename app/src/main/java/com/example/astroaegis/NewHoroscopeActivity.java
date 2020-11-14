@@ -12,12 +12,13 @@ import swisseph.SweDate;
 import swisseph.SwissEph;
 
 public class NewHoroscopeActivity extends AppCompatActivity {
-    TextView testingSETV;
+    TextView testingSETV, datePickerText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_horoscope);
         testingSETV = findViewById(R.id.testingSETV);
+        datePickerText = (TextView) findViewById(R.id.datePickerText);
         new CopyAssetFiles(".*\\.se1", getApplicationContext()).copy();
         computeChart();
     }
