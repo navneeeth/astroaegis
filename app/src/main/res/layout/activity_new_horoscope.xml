@@ -64,18 +64,17 @@
         android:textSize="10sp"
         />
 
-    <TextView
+    <EditText
         android:id="@+id/datePickerText"
-        android:layout_width="113dp"
-        android:layout_height="30dp"
+        android:layout_width="181dp"
+        android:layout_height="31dp"
         android:layout_below="@id/editTextName"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:layout_toRightOf="@id/DOBText"
-        android:textSize="15sp"
         android:fontFamily="sans-serif-condensed"
-        android:textColor="#7986CB"
-        android:text="" />
+        android:text=""
+        android:textSize="10sp" />
 
 
 </RelativeLayout>

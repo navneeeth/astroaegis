@@ -2,16 +2,22 @@ package com.example.astroaegis;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 import swisseph.SweConst;
 import swisseph.SweDate;
 import swisseph.SwissEph;
 
-public class NewHoroscopeActivity extends AppCompatActivity {
+public class NewHoroscopeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     TextView testingSETV, datePickerText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +25,31 @@ public class NewHoroscopeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_horoscope);
         testingSETV = findViewById(R.id.testingSETV);
         datePickerText = (TextView) findViewById(R.id.datePickerText);
+        Calendar c = Calendar.getInstance();
+        String defaultDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        datePickerText.setText(defaultDateString);
         new CopyAssetFiles(".*\\.se1", getApplicationContext()).copy();
         computeChart();
+        datePickerText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getFragmentManager(), "date picker");
+
+            }
+        });
     }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        datePickerText.setText(currentDateString);
+    }
+
     private void computeChart() {
         // Input data:
         int year = 2000;
