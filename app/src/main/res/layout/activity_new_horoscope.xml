@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".NewHoroscopeActivity">
 
     <TextView
         android:id="@+id/testingSETV"
         android:layout_width="76dp"
-        android:layout_height="58dp"
+        android:layout_height="10dp"
         android:fontFamily="sans-serif"
         android:textSize="8sp" />
 
@@ -50,31 +51,31 @@
 
     <EditText
         android:id="@+id/editTextName"
-        android:layout_width="wrap_content"
-        android:layout_height="31dp"
+        android:layout_width="181dp"
+        android:layout_height="41dp"
         android:layout_below="@id/displayText"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@id/nameText"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
         android:hint="Type your Name"
         android:fontFamily="sans-serif-condensed"
-        android:textSize="10sp"
+        android:textSize="20sp"
         />
 
     <EditText
         android:id="@+id/datePickerText"
         android:layout_width="181dp"
-        android:layout_height="31dp"
+        android:layout_height="41dp"
         android:layout_below="@id/editTextName"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@id/DOBText"
         android:fontFamily="sans-serif-condensed"
         android:text=""
-        android:textSize="10sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/TOBText"
@@ -91,14 +92,14 @@
     <EditText
         android:id="@+id/timePickerText"
         android:layout_width="181dp"
-        android:layout_height="31dp"
+        android:layout_height="41dp"
         android:layout_below="@id/datePickerText"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@id/TOBText"
         android:fontFamily="sans-serif-condensed"
         android:text=""
-        android:textSize="10sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/LocationText"
@@ -131,5 +132,37 @@
         android:layout_below="@id/locationSearchView"
         android:layout_marginLeft="115dp"
         android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/latitudeText"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locationSearchViewList"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Lat" />
+    <EditText
+        android:id="@+id/longitudeText"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locationSearchViewList"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/latitudeText"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Lon" />
+
+    <Button
+        android:id="@+id/generateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/latitudeText"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="30dp"
+        android:text="Generate"
+        android:backgroundTint="#7986CB"/>
 
 </RelativeLayout>
