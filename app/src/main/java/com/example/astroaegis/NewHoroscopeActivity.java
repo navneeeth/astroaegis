@@ -10,6 +10,7 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ListView;
@@ -31,12 +32,14 @@ import swisseph.SwissEph;
 import static android.R.layout.simple_list_item_1;
 
 public class NewHoroscopeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
-    TextView testingSETV, datePickerText, timePickerText;
+    TextView testingSETV, datePickerText, timePickerText, latitudeText, longitudeText;
     SearchView locationSearchView;
     ListView locationSearchViewList;
     ArrayList<String> list;
-    private ArrayAdapter<String> adapter, adapter1;
+    private ArrayAdapter<String> adapter;
     Geocoder geocoder;
+    String addressSelected = "";
+    Double locationLatitude = 0.0, locationLongitude = 0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,8 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
         timePickerText = (TextView) findViewById(R.id.timePickerText);
         locationSearchView = (SearchView) findViewById(R.id.locationSearchView);
         locationSearchViewList = (ListView) findViewById(R.id.locationSearchViewList);
+        latitudeText = (TextView) findViewById(R.id.latitudeText);
+        longitudeText = (TextView) findViewById(R.id.longitudeText);
         geocoder = new Geocoder(this);
         Calendar c = Calendar.getInstance();
         String defaultDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
@@ -73,12 +78,34 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
                         list.add(""+addressCity+", "+addressCountry);
                     }
                     adapter = new ArrayAdapter<String>(NewHoroscopeActivity.this, simple_list_item_1, list);
-                    locationSearchViewList.setAdapter(adapter);
+                    if(adapter!=null) {
+                        locationSearchViewList.setAdapter(adapter);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                //adapter.getFilter().filter(newText);
+                adapter.getFilter().filter(newText);
                 return false;
+            }
+        });
+        locationSearchViewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                addressSelected = locationSearchViewList.getItemAtPosition(position).toString();
+                locationSearchView.setQuery(addressSelected, false);
+                try {
+                    if(addressSelected.length()>0) {
+                        addressSelected = addressSelected.substring(0, addressSelected.indexOf(","));
+                    }
+                    List<Address> selectedLocationList = geocoder.getFromLocationName(addressSelected, 1);
+                    Address selectedLocation = selectedLocationList.get(0);
+                    locationLatitude = selectedLocation.getLatitude();
+                    locationLongitude = selectedLocation.getLongitude();
+                    latitudeText.setText(""+locationLatitude);
+                    longitudeText.setText(""+locationLongitude);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         new CopyAssetFiles(".*\\.se1", getApplicationContext()).copy();
