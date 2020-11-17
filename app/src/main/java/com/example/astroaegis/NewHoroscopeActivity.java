@@ -166,6 +166,12 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
                 Log.d("finalMinuteDouble", String.valueOf(finalMinuteDouble));
                 double finalTime = finalHour + finalMinuteDouble / 60. - hourValue;
                 Log.d("finaltime", String.valueOf(finalTime));
+                displayChartIntent.putExtra("latitude", latitude);
+                displayChartIntent.putExtra("longitude", longitude);
+                displayChartIntent.putExtra("finalTime", finalTime);
+                displayChartIntent.putExtra("day", selectedDay);
+                displayChartIntent.putExtra("month", selectedMonth);
+                displayChartIntent.putExtra("year", selectedYear);
             }
         });
     }
