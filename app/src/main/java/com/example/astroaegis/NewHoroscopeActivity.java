@@ -145,7 +145,9 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
                 String name = userName.getText().toString();
                 String timeOfBirth = timePickerText.getText().toString();
                 double latitude = Double.parseDouble(latitudeText.getText().toString());
+                Log.d("latitude", String.valueOf(latitude));
                 double longitude = Double.parseDouble(longitudeText.getText().toString());
+                Log.d("longitude", String.valueOf(longitude));
                 String timeZone = TimezoneMapper.latLngToTimezoneString(latitude, longitude);
                 Log.d("timezone", timeZone);
                 TimeZone tz = TimeZone.getTimeZone(timeZone);
@@ -172,6 +174,7 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
                 displayChartIntent.putExtra("day", selectedDay);
                 displayChartIntent.putExtra("month", selectedMonth);
                 displayChartIntent.putExtra("year", selectedYear);
+                startActivity(displayChartIntent);
             }
         });
     }

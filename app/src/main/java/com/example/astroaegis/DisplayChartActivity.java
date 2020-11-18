@@ -2,7 +2,10 @@ package com.example.astroaegis;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -15,18 +18,21 @@ import swisseph.SweDate;
 import swisseph.SwissEph;
 
 public class DisplayChartActivity extends AppCompatActivity {
-
+    Intent newHoroscopeActivityIntent;
+    TextView chartDisplayText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_chart);
+        chartDisplayText = (TextView) findViewById(R.id.chartDisplayText);
         new CopyAssetFiles(".*\\.se1", getApplicationContext()).copy();
-        int year = 2000;
-        int month = 2;
-        int day = 24;
-        double longitude = 77 + 59 / 60.0;    // Chennai
-        double latitude = 12 + 57 / 60.0;
-        double hour = 9 + 37. / 60. - 5.5; // IST
+        newHoroscopeActivityIntent = getIntent();
+        double latitude = Double.parseDouble(newHoroscopeActivityIntent.getStringExtra("latitude"));
+        double longitude = Double.parseDouble(newHoroscopeActivityIntent.getStringExtra("longitude"));
+        int year = Integer.parseInt(newHoroscopeActivityIntent.getStringExtra("year"));
+        int month = Integer.parseInt(newHoroscopeActivityIntent.getStringExtra("month"));
+        int day = Integer.parseInt(newHoroscopeActivityIntent.getStringExtra("day"));
+        double hour = Double.parseDouble(newHoroscopeActivityIntent.getStringExtra("finalTime"));
         computeChart(year, month, day, longitude, latitude, hour);
     }
     private void computeChart(int year, int month, int day, double longitude, double latitude, double hour) {
@@ -60,6 +66,8 @@ public class DisplayChartActivity extends AppCompatActivity {
         printString += "\n" + getAllplanets(sw, sd);
 
         //testingSETV.setText(printString);
+        chartDisplayText.setText(printString);
+
     }
 
     private String getAllplanets(SwissEph sw, SweDate sd) {
