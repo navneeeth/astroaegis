@@ -168,12 +168,20 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
                 Log.d("finalMinuteDouble", String.valueOf(finalMinuteDouble));
                 double finalTime = finalHour + finalMinuteDouble / 60. - hourValue;
                 Log.d("finaltime", String.valueOf(finalTime));
-                displayChartIntent.putExtra("latitude", latitude);
-                displayChartIntent.putExtra("longitude", longitude);
-                displayChartIntent.putExtra("finalTime", finalTime);
-                displayChartIntent.putExtra("day", selectedDay);
-                displayChartIntent.putExtra("month", selectedMonth);
-                displayChartIntent.putExtra("year", selectedYear);
+                String latitudeString = String.valueOf(latitude);
+                String longitudeString = String.valueOf(longitude);
+                String finalTimeString = String.valueOf(finalTime);
+                String selectedDayString = String.valueOf(selectedDay);
+                String selectedMonthString = String.valueOf(selectedMonth);
+                String selectedYearString = String.valueOf(selectedYear);
+                String nameString = String.valueOf(userName.getText().toString());
+                displayChartIntent.putExtra("latitude", latitudeString);
+                displayChartIntent.putExtra("longitude", longitudeString);
+                displayChartIntent.putExtra("finalTime", finalTimeString);
+                displayChartIntent.putExtra("day", selectedDayString);
+                displayChartIntent.putExtra("month", selectedMonthString);
+                displayChartIntent.putExtra("year", selectedYearString);
+                displayChartIntent.putExtra("name", nameString);
                 startActivity(displayChartIntent);
             }
         });

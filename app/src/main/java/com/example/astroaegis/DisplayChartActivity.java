@@ -31,8 +31,10 @@ public class DisplayChartActivity extends AppCompatActivity {
         double longitude = Double.parseDouble(newHoroscopeActivityIntent.getStringExtra("longitude"));
         int year = Integer.parseInt(newHoroscopeActivityIntent.getStringExtra("year"));
         int month = Integer.parseInt(newHoroscopeActivityIntent.getStringExtra("month"));
+        month++;
         int day = Integer.parseInt(newHoroscopeActivityIntent.getStringExtra("day"));
         double hour = Double.parseDouble(newHoroscopeActivityIntent.getStringExtra("finalTime"));
+        String name = newHoroscopeActivityIntent.getStringExtra("name");
         computeChart(year, month, day, longitude, latitude, hour);
     }
     private void computeChart(int year, int month, int day, double longitude, double latitude, double hour) {
