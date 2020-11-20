@@ -51,13 +51,9 @@ public class DisplayChartActivity extends AppCompatActivity {
         // Print input details:
         printString = getDateinfo(sd);
         printString += getLocationinfo(longitude, latitude);
-
-        //////////////////////////////////////////////
         // Output ayanamsa value:
         //////////////////////////////////////////////
         printString += "\n" + getAyanamsainfo(sw, sd);
-
-        //////////////////////////////////////////////
         // Output lagna:
         //////////////////////////////////////////////
         printString += getLagnainfo(sw, sd, longitude, latitude);
