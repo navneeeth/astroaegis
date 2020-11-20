@@ -1,0 +1,14 @@
+package com.example.astroaegis;
+
+public class Surya {
+    PlanetHelper ph;
+    private int raashiNumber, nakshatraNumber;
+    private String raashi, nakshatra;
+    public Surya(int raashiNo, int nakshatraNo) {
+        raashiNumber = raashiNo;
+        nakshatraNumber = nakshatraNo;
+        ph = new PlanetHelper();
+        raashi = ph.getRaashiFromNumber(raashiNumber);
+        nakshatra = ph.getNakshatraFromNumber(nakshatraNumber);
+    }
+}

@@ -17,7 +17,7 @@ import swisseph.SweConst;
 import swisseph.SweDate;
 import swisseph.SwissEph;
 
-import static com.example.astroaegis.PlanetHelper.*;
+import com.example.astroaegis.PlanetHelper.*;
 
 
 public class DisplayChartActivity extends AppCompatActivity {
