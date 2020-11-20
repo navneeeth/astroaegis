@@ -17,9 +17,14 @@ import swisseph.SweConst;
 import swisseph.SweDate;
 import swisseph.SwissEph;
 
+import static com.example.astroaegis.PlanetHelper.*;
+
+
 public class DisplayChartActivity extends AppCompatActivity {
     Intent newHoroscopeActivityIntent;
     TextView chartDisplayText;
+    PlanetHelper ph;
+    double suryaDegreeTotal, chandraDegreeTotal, kujaDegreeTotal, budhaDegreeTotal, guruDegreeTotal, shukraDegreeTotal, shanaischaraDegreeTotal, rahuDegreeTotal, ketuDegreeTotal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +32,7 @@ public class DisplayChartActivity extends AppCompatActivity {
         chartDisplayText = (TextView) findViewById(R.id.chartDisplayText);
         new CopyAssetFiles(".*\\.se1", getApplicationContext()).copy();
         newHoroscopeActivityIntent = getIntent();
+        ph = new PlanetHelper();
         double latitude = Double.parseDouble(newHoroscopeActivityIntent.getStringExtra("latitude"));
         double longitude = Double.parseDouble(newHoroscopeActivityIntent.getStringExtra("longitude"));
         int year = Integer.parseInt(newHoroscopeActivityIntent.getStringExtra("year"));
@@ -110,6 +116,9 @@ public class DisplayChartActivity extends AppCompatActivity {
 
             s += String.format("%-9s %s %c\n",
                     planetName, toDMS(xp[0]), (retrograde ? 'R' : 'D'));
+            double planetPosition = getPlanetPosition(xp[0]);
+            ph.setPlanetDegrees(planetName, planetPosition);
+
         }
         // KETU
         xp[0] = (xp[0] + 180.0) % 360;
@@ -117,6 +126,8 @@ public class DisplayChartActivity extends AppCompatActivity {
 
         s += String.format("%-9s %s %c\n",
                 planetName, toDMS(xp[0]), (retrograde ? 'R' : 'D'));
+        double planetPosition = getPlanetPosition(xp[0]);
+        ph.setPlanetDegrees(planetName, planetPosition);
         return s;
     }
 
@@ -175,5 +186,36 @@ public class DisplayChartActivity extends AppCompatActivity {
         return String.format("%3d° %02d' %07.4f\"", deg, min, sec);
     }
 
+    static int getDegrees(double d) {
+        d += 0.5/3600./10000.;	// round to 1/1000 of a second
+        int deg = (int) d;
+        return deg;
+    }
 
+    static int getMinutes(double d) {
+        d += 0.5/3600./10000.;	// round to 1/1000 of a second
+        int deg = (int) d;
+        d = (d - deg) * 60;
+        int min = (int) d;
+        return min;
+    }
+
+    static double getSeconds(double d) {
+        d += 0.5/3600./10000.;	// round to 1/1000 of a second
+        int deg = (int) d;
+        d = (d - deg) * 60;
+        int min = (int) d;
+        d = (d - min) * 60;
+        double sec = d;
+        return sec;
+    }
+
+    double getPlanetPosition(double loc) {
+        int planetDegree = getDegrees(loc);
+        int planetMinute = getMinutes(loc);
+        double planetSeconds = getSeconds(loc);
+        String degreesDetails = planetDegree+"."+planetMinute;
+        double planetPosition = Double.parseDouble(degreesDetails);
+        return planetPosition;
+    }
 }
