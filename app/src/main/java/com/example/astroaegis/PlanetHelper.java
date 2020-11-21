@@ -469,55 +469,64 @@ public class PlanetHelper {
             suryaDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
             int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
-            new Surya(raashiNo, nakshatraSet);
+            Surya s = new Surya(raashiNo, nakshatraSet);
+            s.setDegrees(suryaDegreeTotal);
         }
         else if(planetName.equals("Moon")) {
             chandraDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
             int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
-            new Chandra(raashiNo, nakshatraSet);
+            Chandra c = new Chandra(raashiNo, nakshatraSet);
+            c.setDegrees(chandraDegreeTotal);
         }
         else if(planetName.equals("Mars")) {
             kujaDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
             int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
-            new Kuja(raashiNo, nakshatraSet);
+            Kuja k = new Kuja(raashiNo, nakshatraSet);
+            k.setDegrees(kujaDegreeTotal);
         }
         else if(planetName.equals("Mercury")) {
             budhaDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
             int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
-            new Budha(raashiNo, nakshatraSet);
+            Budha b = new Budha(raashiNo, nakshatraSet);
+            b.setDegrees(budhaDegreeTotal);
         }
         else if(planetName.equals("Jupiter")) {
             guruDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
             int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
-            new Guru(raashiNo, nakshatraSet);
+            Guru g = new Guru(raashiNo, nakshatraSet);
+            g.setDegrees(guruDegreeTotal);
         }
         else if(planetName.equals("Venus")) {
             shukraDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
             int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
-            new Shukra(raashiNo, nakshatraSet);
+            Shukra sh = new Shukra(raashiNo, nakshatraSet);
+            sh.setDegrees(shukraDegreeTotal);
         }
         else if(planetName.equals("Saturn")) {
             shanaischaraDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
             int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
-            new Shanaischara(raashiNo, nakshatraSet);
+            Shanaischara sa = new Shanaischara(raashiNo, nakshatraSet);
+            sa.setDegrees(shanaischaraDegreeTotal);
         }
         else if(planetName.equals("true Node")) {
             rahuDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
             int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
-            new Rahu(raashiNo, nakshatraSet);
+            Rahu r = new Rahu(raashiNo, nakshatraSet);
+            r.setDegrees(rahuDegreeTotal);
         }
         else if(planetName.equals("Ketu")) {
             ketuDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
             int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
-            new Ketu(raashiNo, nakshatraSet);
+            Ketu ke = new Ketu(raashiNo, nakshatraSet);
+            ke.setDegrees(ketuDegreeTotal);
         }
     }
     public String getRaashiFromNumber(int raashiNumber) {
