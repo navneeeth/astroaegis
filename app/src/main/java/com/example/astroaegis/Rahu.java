@@ -2,11 +2,12 @@ package com.example.astroaegis;
 
 public class Rahu {
     PlanetHelper ph;
-    private int raashiNumber, nakshatraNumber;
+    private int raashiNumber, nakshatraNumber, nakshatraPaada;
     private String raashi, nakshatra;
-    public Rahu(int raashiNo, int nakshatraNo) {
+    public Rahu(int raashiNo, int[] nakshatraSet) {
         raashiNumber = raashiNo;
-        nakshatraNumber = nakshatraNo;
+        nakshatraNumber = nakshatraSet[0];
+        nakshatraPaada = nakshatraSet[1];
         ph = new PlanetHelper();
         raashi = ph.getRaashiFromNumber(raashiNumber);
         nakshatra = ph.getNakshatraFromNumber(nakshatraNumber);

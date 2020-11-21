@@ -118,7 +118,6 @@ public class DisplayChartActivity extends AppCompatActivity {
                     planetName, toDMS(xp[0]), (retrograde ? 'R' : 'D'));
             double planetPosition = getPlanetPosition(xp[0]);
             ph.setPlanetDegrees(planetName, planetPosition);
-
         }
         // KETU
         xp[0] = (xp[0] + 180.0) % 360;

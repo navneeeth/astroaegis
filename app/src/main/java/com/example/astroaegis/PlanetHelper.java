@@ -11,110 +11,513 @@ public class PlanetHelper {
         return raashiNo;
     }
 
-    public int getNakshatraNumber(int raashiNo, double degrees) {
+    public int[] getNakshatraNumber(int raashiNo, double degrees) {
         int minutes = (int) (degrees - Math.floor(degrees));
-        int nakshatraNo;
-        if(raashiNo == 1 || raashiNo == 5 || raashiNo == 9) {
+        int nakshatraNo, nakshatraPaada;
+        if(raashiNo == 1) {
             if(minutes<13.20) {
-                nakshatraNo = 3*(raashiNo-1)+1;
+                nakshatraNo = 1;
+                if(minutes<3.2) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<6.4) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<10) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
             }
             else if(minutes<26.40) {
-                nakshatraNo = 3*(raashiNo-1)+2;
+                nakshatraNo = 2;
+                if(minutes<16.4) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<20) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<23.2) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
             }
             else {
-                nakshatraNo = 3*(raashiNo-1)+3;
+                nakshatraNo = 3;
+                nakshatraPaada = 1;
             }
         }
-        else if(raashiNo == 2 || raashiNo == 6 || raashiNo == 10) {
+        else if(raashiNo == 2) {
             if(minutes<10) {
-                nakshatraNo = 3*(raashiNo-1)+1;
+                nakshatraNo = 3;
+                if(minutes<3.2) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<6.4) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
             }
             else if(minutes<23.20){
-                nakshatraNo = 3*(raashiNo-1)+2;
+                nakshatraNo = 4;
+                if(minutes<13.2) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<16.4) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<20) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
             }
             else {
-                nakshatraNo = 3*(raashiNo-1)+3;
+                nakshatraNo = 5;
+                if(minutes<26.4) {
+                    nakshatraPaada = 1;
+                }
+                else {
+                    nakshatraPaada = 2;
+                }
             }
         }
-        else if(raashiNo == 3 || raashiNo == 7 || raashiNo == 11) {
+        else if(raashiNo == 3) {
             if(minutes<6.40) {
-                nakshatraNo = 3*(raashiNo-1)+1;
+                nakshatraNo = 5;
+                if(minutes<3.2) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
             }
             else if(minutes<20.00) {
-                nakshatraNo = 3*(raashiNo-1)+2;
+                nakshatraNo = 6;
+                if(minutes<10) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<13.2) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<16.4) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
             }
             else {
-                nakshatraNo = 3*(raashiNo-1)+3;
+                nakshatraNo = 7;
+                if(minutes<23.2) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<26.4) {
+                    nakshatraPaada = 2;
+                }
+                else {
+                    nakshatraPaada = 3;
+                }
+            }
+        }
+        else if(raashiNo == 4) {
+            if(minutes<3.20) {
+                nakshatraNo = 7;
+                nakshatraPaada = 4;
+            }
+            else if(minutes<16.40) {
+                nakshatraNo = 8;
+                if(minutes<6.4) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<10) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<13.2) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+            else {
+                nakshatraNo = 9;
+                if(minutes<20) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<23.2) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<26.4) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+        }
+        else if(raashiNo == 5) {
+             if (minutes < 13.20) {
+                nakshatraNo = 10;
+                 if(minutes<3.2) {
+                     nakshatraPaada = 1;
+                 }
+                 else if(minutes<6.4) {
+                     nakshatraPaada = 2;
+                 }
+                 else if(minutes<10) {
+                     nakshatraPaada = 3;
+                 }
+                 else {
+                     nakshatraPaada = 4;
+                 }
+             }
+             else if (minutes < 26.40) {
+                nakshatraNo = 11;
+                 if(minutes<16.4) {
+                     nakshatraPaada = 1;
+                 }
+                 else if(minutes<20) {
+                     nakshatraPaada = 2;
+                 }
+                 else if(minutes<23.2) {
+                     nakshatraPaada = 3;
+                 }
+                 else {
+                     nakshatraPaada = 4;
+                 }
+                }
+             else {
+                nakshatraNo = 12;
+                 nakshatraPaada = 1;
+            }
+        }
+        else if(raashiNo == 6) {
+            if(minutes<10) {
+                nakshatraNo = 12;
+                if(minutes<3.2) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<6.4) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+            else if(minutes<23.20){
+                nakshatraNo = 13;
+                if(minutes<13.2) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<16.4) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<20) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+            else {
+                nakshatraNo = 14;
+                if(minutes<26.4) {
+                    nakshatraPaada = 1;
+                }
+                else {
+                    nakshatraPaada = 2;
+                }
+            }
+        }
+        else if(raashiNo == 7) {
+            if(minutes<6.40) {
+                nakshatraNo = 14;
+                if(minutes<3.2) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+            else if(minutes<20.00) {
+                nakshatraNo = 15;
+                if(minutes<10) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<13.2) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<16.4) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+            else {
+                nakshatraNo = 16;
+                if(minutes<23.2) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<26.4) {
+                    nakshatraPaada = 2;
+                }
+                else {
+                    nakshatraPaada = 3;
+                }
+            }
+        }
+        else if(raashiNo == 8) {
+            if(minutes<3.20) {
+                nakshatraNo = 16;
+                nakshatraPaada = 4;
+            }
+            else if(minutes<16.40) {
+                nakshatraNo = 17;
+                if(minutes<6.4) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<10) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<13.2) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+            else {
+                nakshatraNo = 18;
+                if(minutes<20) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<23.2) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<26.4) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+        }
+        else if(raashiNo == 9) {
+            if (minutes < 13.20) {
+                nakshatraNo = 19;
+                if(minutes<3.2) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<6.4) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<10) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+            else if (minutes < 26.40) {
+                nakshatraNo = 20;
+                if(minutes<16.4) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<20) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<23.2) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+                }
+            else {
+                nakshatraNo = 21;
+                nakshatraPaada = 1;
+                }
+        }
+        else if(raashiNo == 10) {
+            if(minutes<10) {
+                nakshatraNo = 21;
+                if(minutes<3.2) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<6.4) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+            else if(minutes<23.20){
+                nakshatraNo = 22;
+                if(minutes<13.2) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<16.4) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<20) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+            else {
+                nakshatraNo = 23;
+                if(minutes<26.4) {
+                    nakshatraPaada = 1;
+                }
+                else {
+                    nakshatraPaada = 2;
+                }
+            }
+        }
+        else if(raashiNo == 11) {
+            if(minutes<6.40) {
+                nakshatraNo = 23;
+                if(minutes<3.2) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+            else if(minutes<20.00) {
+                nakshatraNo = 24;
+                if(minutes<10) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<13.2) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<16.4) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
+            }
+            else {
+                nakshatraNo = 25;
+                if(minutes<23.2) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<26.4) {
+                    nakshatraPaada = 2;
+                }
+                else {
+                    nakshatraPaada = 3;
+                }
             }
         }
         else {
             if(minutes<3.20) {
-                nakshatraNo = 3*(raashiNo-1)+1;
+                nakshatraNo = 25;
+                nakshatraPaada = 4;
             }
             else if(minutes<16.40) {
-                nakshatraNo = 3*(raashiNo-1)+2;
+                nakshatraNo = 26;
+                if(minutes<6.4) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<10) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<13.2) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
             }
             else {
-                nakshatraNo = 3*(raashiNo-1)+3;
+                nakshatraNo = 27;
+                if(minutes<20) {
+                    nakshatraPaada = 1;
+                }
+                else if(minutes<23.2) {
+                    nakshatraPaada = 2;
+                }
+                else if(minutes<26.4) {
+                    nakshatraPaada = 3;
+                }
+                else {
+                    nakshatraPaada = 4;
+                }
             }
         }
-        return nakshatraNo;
+        int[] nakshatraSetInt = new int[2];
+        nakshatraSetInt[0] = nakshatraNo;
+        nakshatraSetInt[1] = nakshatraPaada;
+        return nakshatraSetInt;
     }
 
     public void setPlanetDegrees(String planetName, double degrees) {
         if(planetName.equals("Sun")) {
             suryaDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
-            int nakshatraNo = getNakshatraNumber(raashiNo, degrees);
-            new Surya(raashiNo, nakshatraNo);
+            int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
+            new Surya(raashiNo, nakshatraSet);
         }
         else if(planetName.equals("Moon")) {
             chandraDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
-            int nakshatraNo = getNakshatraNumber(raashiNo, degrees);
-            new Chandra(raashiNo, nakshatraNo);
+            int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
+            new Chandra(raashiNo, nakshatraSet);
         }
         else if(planetName.equals("Mars")) {
             kujaDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
-            int nakshatraNo = getNakshatraNumber(raashiNo, degrees);
-            new Kuja(raashiNo, nakshatraNo);
+            int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
+            new Kuja(raashiNo, nakshatraSet);
         }
         else if(planetName.equals("Mercury")) {
             budhaDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
-            int nakshatraNo = getNakshatraNumber(raashiNo, degrees);
-            new Budha(raashiNo, nakshatraNo);
+            int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
+            new Budha(raashiNo, nakshatraSet);
         }
         else if(planetName.equals("Jupiter")) {
             guruDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
-            int nakshatraNo = getNakshatraNumber(raashiNo, degrees);
-            new Guru(raashiNo, nakshatraNo);
+            int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
+            new Guru(raashiNo, nakshatraSet);
         }
         else if(planetName.equals("Venus")) {
             shukraDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
-            int nakshatraNo = getNakshatraNumber(raashiNo, degrees);
-            new Shukra(raashiNo, nakshatraNo);
+            int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
+            new Shukra(raashiNo, nakshatraSet);
         }
         else if(planetName.equals("Saturn")) {
             shanaischaraDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
-            int nakshatraNo = getNakshatraNumber(raashiNo, degrees);
-            new Shanaischara(raashiNo, nakshatraNo);
+            int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
+            new Shanaischara(raashiNo, nakshatraSet);
         }
         else if(planetName.equals("true Node")) {
             rahuDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
-            int nakshatraNo = getNakshatraNumber(raashiNo, degrees);
-            new Rahu(raashiNo, nakshatraNo);
+            int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
+            new Rahu(raashiNo, nakshatraSet);
         }
         else if(planetName.equals("Ketu")) {
             ketuDegreeTotal = degrees;
             int raashiNo = getRaashiNumber(degrees);
-            int nakshatraNo = getNakshatraNumber(raashiNo, degrees);
-            new Ketu(raashiNo, nakshatraNo);
+            int[] nakshatraSet = getNakshatraNumber(raashiNo, degrees);
+            new Ketu(raashiNo, nakshatraSet);
         }
     }
     public String getRaashiFromNumber(int raashiNumber) {
