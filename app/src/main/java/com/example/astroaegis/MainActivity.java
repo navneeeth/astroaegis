@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         responseTV = findViewById(R.id.responseTV);
         newHoroscopeActivityIntent = new Intent(MainActivity.this, NewHoroscopeActivity.class);
         openHoroscopeActivityIntent = new Intent(MainActivity.this, OpenHoroscopeActivity.class);
+        worldChartButtonActivityIntent = new Intent(MainActivity.this, DisplayActivity.class);
         newHoroscopeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast worldChartButtonToast = Toast.makeText(MainActivity.this, "Feature still being developed!", Toast.LENGTH_LONG);
                 worldChartButtonToast.show();
                 jsonParse();
+                startActivity(worldChartButtonActivityIntent);
             }
         });
         mQueue = Volley.newRequestQueue(this);
