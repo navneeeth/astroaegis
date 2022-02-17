@@ -1,11 +1,11 @@
 package com.example.astroaegis;
 
-public class Budha extends Graha {
+public class Lagna {
     PlanetMethods ph;
     private int raashiNumber, nakshatraNumber, nakshatraPaada;
-    private double degreesTotal, degrees;
     private String raashi, nakshatra;
-    public Budha(int raashiNo, int[] nakshatraSet) {
+    private double degreesTotal, degrees;
+    public Lagna(int raashiNo, int[] nakshatraSet) {
         raashiNumber = raashiNo;
         nakshatraNumber = nakshatraSet[0];
         nakshatraPaada = nakshatraSet[1];
@@ -14,15 +14,14 @@ public class Budha extends Graha {
         nakshatra = ph.getNakshatraFromNumber(nakshatraNumber);
     }
 
-    public Budha() {
+    public Lagna() {
     }
-
     public double getDegrees() {
         return degrees;
     }
 
     public int getRaashiNumber() {
-        return this.raashiNumber;
+        return raashiNumber;
     }
 
     public String getRaashi() {

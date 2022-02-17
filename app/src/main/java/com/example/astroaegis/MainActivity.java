@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         newHoroscopeButton = findViewById(R.id.newHoroscopeButton);
         openHoroscopeButton = findViewById(R.id.openHoroscopeButton);
         worldChartButton = findViewById(R.id.worldChartButton);
-        responseTV = findViewById(R.id.responseTV);
+        //responseTV = findViewById(R.id.responseTV);
         newHoroscopeActivityIntent = new Intent(MainActivity.this, NewHoroscopeActivity.class);
         openHoroscopeActivityIntent = new Intent(MainActivity.this, OpenHoroscopeActivity.class);
         worldChartButtonActivityIntent = new Intent(MainActivity.this, DisplayActivity.class);

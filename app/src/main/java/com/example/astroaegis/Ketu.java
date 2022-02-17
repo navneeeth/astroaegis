@@ -1,7 +1,6 @@
 package com.example.astroaegis;
-import com.example.astroaegis.PlanetHelper.*;
-public class Ketu {
-    PlanetHelper ph;
+public class Ketu extends Graha {
+    PlanetMethods ph;
     private int raashiNumber, nakshatraNumber, nakshatraPaada;
     private String raashi, nakshatra;
     private double degrees, degreesTotal;
@@ -9,12 +8,20 @@ public class Ketu {
     raashiNumber = raashiNo;
     nakshatraNumber = nakshatraSet[0];
     nakshatraPaada = nakshatraSet[1];
-    ph = new PlanetHelper();
+        ph = new PlanetMethods();
     raashi = ph.getRaashiFromNumber(raashiNumber);
     nakshatra = ph.getNakshatraFromNumber(nakshatraNumber);
     }
 
     public Ketu() {
+    }
+
+    public double getDegrees() {
+        return degrees;
+    }
+
+    public int getRaashiNumber() {
+        return this.raashiNumber;
     }
 
     public String getRaashi() {

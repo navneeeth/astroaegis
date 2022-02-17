@@ -1,7 +1,5 @@
 package com.example.astroaegis;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
@@ -20,18 +18,17 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import java.io.File;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
-
-import swisseph.SweConst;
-import swisseph.SweDate;
-import swisseph.SwissEph;
 
 import static android.R.layout.simple_list_item_1;
 
@@ -48,10 +45,14 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
     String addressSelected = "";
     Double locationLatitude = 0.0, locationLongitude = 0.0;
     int selectedDay, selectedMonth, selectedYear;
+    String chosenLocation;
+    RiseAndSetRetrieval rsr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_horoscope);
+        RequestQueue queue = Volley.newRequestQueue(this);
+
         userName = (TextView) findViewById(R.id.editTextName);
         datePickerText = (TextView) findViewById(R.id.datePickerText);
         timePickerText = (TextView) findViewById(R.id.timePickerText);
@@ -71,10 +72,12 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
         datePickerText.setText(defaultDateString);
         int hour = c.get(Calendar.HOUR_OF_DAY);
         int minute = c.get(Calendar.MINUTE);
+        int seconds = c.get(Calendar.SECOND);
         timeInstance = Calendar.getInstance();
         timeInstance.set(Calendar.MINUTE, minute);
         timeInstance.set(Calendar.HOUR_OF_DAY, hour);
-        timePickerText.setText(""+hour+":"+minute);
+        timeInstance.set(Calendar.SECOND, seconds);
+        timePickerText.setText(""+hour+":"+minute+":"+seconds);
         locationSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -142,6 +145,8 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
         generateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //RiseAndSetRetrieval rsr = new RiseAndSetRetrieval(queue, latitudeString, longitudeString, selectedMonthString, selectedYearString, selectedDayString);
                 String name = userName.getText().toString();
                 String timeOfBirth = timePickerText.getText().toString();
                 double latitude = Double.parseDouble(latitudeText.getText().toString());
@@ -155,9 +160,12 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
                 Log.d("tz", String.valueOf(timeDifference));
                 String finalHourString = timeOfBirth.substring(0, timeOfBirth.indexOf(":"));
                 int finalHour = Integer.parseInt(finalHourString);
-                String finalMinuteString = timeOfBirth.substring(timeOfBirth.indexOf(":")+1, timeOfBirth.length());
+                String minuteSubString = timeOfBirth.substring(timeOfBirth.indexOf(":")+1, timeOfBirth.length());
+                String finalMinuteString = minuteSubString.substring(0, minuteSubString.indexOf(":"));
                 int finalMinute = Integer.parseInt(finalMinuteString);
-                double finalMinuteDouble = finalMinute;
+                String finalSecondString = minuteSubString.substring(minuteSubString.indexOf(":")+1,minuteSubString.length());
+                int finalSecond = Integer.parseInt(finalSecondString);
+                double finalMinuteDouble = finalMinute + finalSecond/60.0;
                 long noOfHours = timeDifference / 60;
                 Log.d("noofhours", String.valueOf(noOfHours));
                 double remainderMinutes = timeDifference % 60;
@@ -174,6 +182,8 @@ public class NewHoroscopeActivity extends AppCompatActivity implements DatePicke
                 String selectedDayString = String.valueOf(selectedDay);
                 String selectedMonthString = String.valueOf(selectedMonth);
                 String selectedYearString = String.valueOf(selectedYear);
+
+                rsr = new RiseAndSetRetrieval(queue, latitudeString, longitudeString, selectedMonthString, selectedYearString, selectedDayString);
                 String nameString = String.valueOf(userName.getText().toString());
                 displayChartIntent.putExtra("latitude", latitudeString);
                 displayChartIntent.putExtra("longitude", longitudeString);

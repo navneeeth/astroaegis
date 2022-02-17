@@ -1,29 +1,26 @@
 package com.example.astroaegis;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.File;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
+import java.util.HashMap;
+
 import swisseph.SweConst;
 import swisseph.SweDate;
 import swisseph.SwissEph;
-
-import com.example.astroaegis.PlanetHelper.*;
 
 
 public class DisplayChartActivity extends AppCompatActivity {
     Intent newHoroscopeActivityIntent;
     TextView chartDisplayText;
     PlanetHelper ph;
+    PlanetMethods pm;
     double suryaDegreeTotal, chandraDegreeTotal, kujaDegreeTotal, budhaDegreeTotal, guruDegreeTotal, shukraDegreeTotal, shanaischaraDegreeTotal, rahuDegreeTotal, ketuDegreeTotal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +30,7 @@ public class DisplayChartActivity extends AppCompatActivity {
         new CopyAssetFiles(".*\\.se1", getApplicationContext()).copy();
         newHoroscopeActivityIntent = getIntent();
         ph = new PlanetHelper();
+        pm = new PlanetMethods();
         double latitude = Double.parseDouble(newHoroscopeActivityIntent.getStringExtra("latitude"));
         double longitude = Double.parseDouble(newHoroscopeActivityIntent.getStringExtra("longitude"));
         int year = Integer.parseInt(newHoroscopeActivityIntent.getStringExtra("year"));
@@ -52,8 +50,9 @@ public class DisplayChartActivity extends AppCompatActivity {
         SweDate sd = new SweDate(year, month, day, hour);
 
         // Set sidereal mode:
-        sw.swe_set_sid_mode(SweConst.SE_SIDM_LAHIRI, 0, 0);
-
+        //sw.swe_set_sid_mode(SweConst.SE_SIDM_LAHIRI, 0, 0);
+        sw.swe_set_sid_mode(SweConst.SE_SIDM_USER, 2415020, 23.1360266);
+        System.out.println("Lahiri value"+SweConst.SE_SIDM_LAHIRI);
         // Print input details:
         printString = getDateinfo(sd);
         printString += getLocationinfo(longitude, latitude);
@@ -70,7 +69,73 @@ public class DisplayChartActivity extends AppCompatActivity {
         printString += "\n" + getAllplanets(sw, sd);
 
         //testingSETV.setText(printString);
-        chartDisplayText.setText(printString);
+        printString += "\n Lagna " + ph.lagna.getRaashi();
+        printString += " " + ph.lagna.getNakshatra();
+        printString += " " + ph.lagna.getNakshatraPaada();
+
+        printString += "\n Surya " + ph.surya.getRaashi();
+        printString += " " + ph.surya.getNakshatra();
+        printString += " " + ph.surya.getNakshatraPaada();
+        printString += " " + ph.surya.getBhaavaNo();
+        printString += " " + ph.surya.getBhaavaNoFromChandra();
+
+        printString += "\n Chandra " + ph.chandra.getRaashi();
+        printString += " " + ph.chandra.getNakshatra();
+        printString += " " + ph.chandra.getNakshatraPaada();
+        printString += " " + ph.chandra.getBhaavaNo();
+        printString += " " + ph.chandra.getBhaavaNoFromChandra();
+
+        printString += "\n Mangala " + ph.kuja.getRaashi();
+        printString += " " + ph.kuja.getNakshatra();
+        printString += " " + ph.kuja.getNakshatraPaada();
+        printString += " " + ph.kuja.getBhaavaNo();
+        printString += " " + ph.kuja.getBhaavaNoFromChandra();
+
+        printString += "\n Budha " + ph.budha.getRaashi();
+        printString += " " + ph.budha.getNakshatra();
+        printString += " " + ph.budha.getNakshatraPaada();
+        printString += " " + ph.budha.getBhaavaNo();
+        printString += " " + ph.budha.getBhaavaNoFromChandra();
+
+        printString += "\n Brihaspati " + ph.guru.getRaashi();
+        printString += " " + ph.guru.getNakshatra();
+        printString += " " + ph.guru.getNakshatraPaada();
+        printString += " " + ph.guru.getBhaavaNo();
+        printString += " " + ph.guru.getBhaavaNoFromChandra();
+
+        printString += "\n Shukra " + ph.shukra.getRaashi();
+        printString += " " + ph.shukra.getNakshatra();
+        printString += " " + ph.shukra.getNakshatraPaada();
+        printString += " " + ph.shukra.getBhaavaNo();
+        printString += " " + ph.shukra.getBhaavaNoFromChandra();
+
+        printString += "\n Shanaischara " + ph.shanaischara.getRaashi();
+        printString += " " + ph.shanaischara.getNakshatra();
+        printString += " " + ph.shanaischara.getNakshatraPaada();
+        printString += " " + ph.shanaischara.getBhaavaNo();
+        printString += " " + ph.shanaischara.getBhaavaNoFromChandra();
+
+        printString += "\n Rahu " + ph.rahu.getRaashi();
+        printString += " " + ph.rahu.getNakshatra();
+        printString += " " + ph.rahu.getNakshatraPaada();
+        printString += " " + ph.rahu.getBhaavaNo();
+        printString += " " + ph.rahu.getBhaavaNoFromChandra();
+
+        printString += "\n Ketu " + ph.ketu.getRaashi();
+        printString += " " + ph.ketu.getNakshatra();
+        printString += " " + ph.ketu.getNakshatraPaada();
+        printString += " " + ph.ketu.getBhaavaNo();
+        printString += " " + ph.ketu.getBhaavaNoFromChandra();
+
+        System.out.println("print string "+printString);
+        String finalPrintString = "";
+        finalPrintString = ph.putGrahasInBhaavasInString(finalPrintString);
+        Graha[] grahas = ph.getGrahas();
+        finalPrintString+="Graha information:\n";
+        finalPrintString+="Name\tDegrees\tRaashi\tNakshatra\tBhaava\tNakshatra Paada\n";
+        finalPrintString = finalPrintString + ph.getGrahaDetailsAsAString();
+        System.out.println(finalPrintString);
+        chartDisplayText.setText(finalPrintString);
 
     }
 
@@ -97,6 +162,7 @@ public class DisplayChartActivity extends AppCompatActivity {
         for(int p = 0; p < planets.length; p++) {
             int planet = planets[p];
             String planetName = sw.swe_get_planet_name(planet);
+            System.out.println(planetName + "AND p is " + planet);
             int ret = sw.swe_calc_ut(sd.getJulDay(),
                     planet,
                     flags,
@@ -113,10 +179,16 @@ public class DisplayChartActivity extends AppCompatActivity {
             }
 
             retrograde = (xp[3] < 0);
-
+            System.out.println("XP values for "+planetName);
+            for(int i = 0; i < xp.length; i++) {
+                System.out.println(xp[i]+ " ");
+            }
             s += String.format("%-9s %s %c\n",
                     planetName, toDMS(xp[0]), (retrograde ? 'R' : 'D'));
             double planetPosition = getPlanetPosition(xp[0]);
+            System.out.println("Planet position: "+ planetPosition);
+            double raashi_degrees = pm.getRaashiDegreesFromDegrees(planetPosition);
+            System.out.println("Planet degrees in raashi: "+raashi_degrees);
             ph.setPlanetDegrees(planetName, planetPosition);
         }
         // KETU
@@ -127,6 +199,8 @@ public class DisplayChartActivity extends AppCompatActivity {
                 planetName, toDMS(xp[0]), (retrograde ? 'R' : 'D'));
         double planetPosition = getPlanetPosition(xp[0]);
         ph.setPlanetDegrees(planetName, planetPosition);
+        ph.setUpChandraLagna(ph.chandra.getRaashiNumber());
+        ph.setUpGrahas();
         return s;
     }
 
@@ -170,6 +244,8 @@ public class DisplayChartActivity extends AppCompatActivity {
                 'P',
                 cusps,
                 acsc);
+        ph.setPlanetDegrees("Ascendant", getPlanetPosition(acsc[0]));
+        ph.setUpBhaavas();
 
         return "Ascendant " + toDMS(acsc[0]) + "\n";
     }

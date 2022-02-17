@@ -1,7 +1,7 @@
 package com.example.astroaegis;
 
-public class Shukra {
-    PlanetHelper ph;
+public class Shukra extends Graha {
+    PlanetMethods ph;
     private int raashiNumber, nakshatraNumber, nakshatraPaada;
     private String raashi, nakshatra;
     private double degrees, degreesTotal;
@@ -9,12 +9,20 @@ public class Shukra {
         raashiNumber = raashiNo;
         nakshatraNumber = nakshatraSet[0];
         nakshatraPaada = nakshatraSet[1];
-        ph = new PlanetHelper();
+        ph = new PlanetMethods();
         raashi = ph.getRaashiFromNumber(raashiNumber);
         nakshatra = ph.getNakshatraFromNumber(nakshatraNumber);
     }
 
     public Shukra() {
+    }
+
+    public double getDegrees() {
+        return degrees;
+    }
+
+    public int getRaashiNumber() {
+        return this.raashiNumber;
     }
 
     public String getRaashi() {
